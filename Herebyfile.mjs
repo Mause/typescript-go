@@ -1481,8 +1481,6 @@ async function runBuildNativePreviewPackages() {
             bin: undefined,
             imports: undefined,
             name: npmPackageName,
-            os: [nodeOs],
-            cpu: [nodeArch],
             exports: {
                 "./package.json": "./package.json",
             },

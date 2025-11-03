@@ -1360,11 +1360,6 @@ const nativePreviewPlatforms = memoize(() => {
         ["android", "arm64", "LinuxSign"],
     ];
 
-    if (!options.forRelease) {
-        supportedPlatforms = supportedPlatforms.filter(([os, arch]) => os === process.platform && arch === process.arch);
-        assert.equal(supportedPlatforms.length, 1, "No supported platforms found");
-    }
-
     return supportedPlatforms.map(([os, arch, cert, alpine]) => {
         const npmDirName = `native-preview-${os}-${arch}`;
         const npmDir = path.join(builtNpm, npmDirName);

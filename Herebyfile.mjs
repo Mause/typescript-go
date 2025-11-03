@@ -1412,6 +1412,8 @@ const nativePreviewPlatforms = memoize(() => {
                 return "linux";
             case "win32":
                 return "windows";
+            case "android":
+                return "android";
             default:
                 throw new Error(`Unsupported OS: ${os}`);
         }

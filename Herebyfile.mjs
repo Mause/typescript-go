@@ -1357,14 +1357,7 @@ void 0;
 const nativePreviewPlatforms = memoize(() => {
     /** @type {[os: OS, arch: Arch, cert: Cert, alpine?: boolean][]} */
     let supportedPlatforms = [
-        ["win32", "x64", "Microsoft400"],
-        ["win32", "arm64", "Microsoft400"],
-        ["linux", "x64", "LinuxSign", true],
-        ["linux", "arm", "LinuxSign"],
-        ["linux", "arm64", "LinuxSign", true],
-        ["darwin", "x64", "MacDeveloperHarden"],
-        ["darwin", "arm64", "MacDeveloperHarden"],
-        // Wasm?
+        ["android", "arm64", "LinuxSign"],
     ];
 
     if (!options.forRelease) {

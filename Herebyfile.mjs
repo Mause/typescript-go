@@ -1357,20 +1357,8 @@ void 0;
 const nativePreviewPlatforms = memoize(() => {
     /** @type {[os: OS, arch: Arch, cert: Cert, alpine?: boolean][]} */
     let supportedPlatforms = [
-        ["win32", "x64", "Microsoft400"],
-        ["win32", "arm64", "Microsoft400"],
-        ["linux", "x64", "LinuxSign", true],
-        ["linux", "arm", "LinuxSign"],
-        ["linux", "arm64", "LinuxSign", true],
-        ["darwin", "x64", "MacDeveloperHarden"],
-        ["darwin", "arm64", "MacDeveloperHarden"],
-        // Wasm?
+        ["android", "arm64", "LinuxSign"],
     ];
-
-    if (!options.forRelease) {
-        supportedPlatforms = supportedPlatforms.filter(([os, arch]) => os === process.platform && arch === process.arch);
-        assert.equal(supportedPlatforms.length, 1, "No supported platforms found");
-    }
 
     return supportedPlatforms.map(([os, arch, cert, alpine]) => {
         const npmDirName = `native-preview-${os}-${arch}`;
@@ -1424,6 +1412,8 @@ const nativePreviewPlatforms = memoize(() => {
                 return "linux";
             case "win32":
                 return "windows";
+            case "android":
+                return "android";
             default:
                 throw new Error(`Unsupported OS: ${os}`);
         }
@@ -1491,8 +1481,6 @@ async function runBuildNativePreviewPackages() {
             bin: undefined,
             imports: undefined,
             name: npmPackageName,
-            os: [nodeOs],
-            cpu: [nodeArch],
             exports: {
                 "./package.json": "./package.json",
             },

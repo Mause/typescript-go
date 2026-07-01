@@ -1602,11 +1602,6 @@ const getPlatforms = memoize(() => {
 
   supportedPlatforms = [{ os: "android", arch: "arm64", cert: "LinuxSign" }];
 
-    if (!options.forRelease) {
-        supportedPlatforms = supportedPlatforms.filter(({ os, arch }) => os === process.platform && arch === process.arch);
-        assert.equal(supportedPlatforms.length, 1, "No supported platforms found");
-    }
-
     return supportedPlatforms.map(({ os, arch, cert = "LinuxSign", vsix, alpine }) => {
         const packageBaseName = publishAsTypescript ? "typescript" : "native-preview";
         const npmDirName = `${packageBaseName}-${os}-${arch}`;

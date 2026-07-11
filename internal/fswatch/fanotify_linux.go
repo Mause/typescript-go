@@ -187,12 +187,15 @@ func init() {
 // fanotifyAvailable probes whether fanotify_init succeeds with the flags
 // this backend needs.
 func fanotifyAvailable() bool {
+	return false
+	/*
 	fd, err := unix.FanotifyInit(fanotifyInitFlags, unix.O_RDONLY|unix.O_CLOEXEC)
 	if err != nil {
 		return false
 	}
 	_ = unix.Close(fd)
 	return true
+	*/
 }
 
 // newFanotifyBackend creates a fanotify backend. If noRename is true, the
